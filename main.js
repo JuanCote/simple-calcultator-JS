@@ -2,19 +2,16 @@ const input = document.getElementById('input')
 const divide = document.getElementById('divide').innerText
 const multiply = document.getElementById('multi').innerText
 
-const numbers = document.getElementsByName('number')
-for (let i = 0 ; i < numbers.length; i++) {
-    numbers[i].addEventListener('click' , function() {
-            if (!Number.isInteger(parseInt(numbers[i].innerText)) && !Number.isInteger(parseInt(input.innerText[input.innerText.length-1]))){
-
-            }else if (input.innerText.length > 12) {
-
-            }
-            else {
-                input.innerText += numbers[i].innerText
-            }
-    })
-}
+document.getElementById('numbers').addEventListener('click', function(e) {
+    let elem = e.target.innerText
+    if (elem != '=' && !['row', 'numbers'].includes(e.target.id)) {
+        if ((!Number.isInteger(parseInt(elem)) && !Number.isInteger(parseInt(input.innerText[input.innerText.length-1]))) || (input.innerText.length > 12)) {
+            //pass
+        }else {
+            input.innerText += elem
+        }
+    }
+})
 
 document.getElementById('c').addEventListener('click', function() {
     input.innerText = ''
@@ -61,7 +58,7 @@ document.getElementById('equal').addEventListener('click', function() {
         input.innerText = result
     }
     else if (result.toString().split('.')[1].length > 12) {
-        input.innerText = result.toFixed(10)
+        input.innerText = parseFloat(result.toFixed(10))
     }else {
         input.innerText = result
     }
