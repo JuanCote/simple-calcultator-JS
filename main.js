@@ -11,7 +11,6 @@ for (let i = 0 ; i < numbers.length; i++) {
 
             }
             else {
-                console.log(input.innerText.length)
                 input.innerText += numbers[i].innerText
             }
     })
@@ -57,6 +56,14 @@ document.getElementById('equal').addEventListener('click', function() {
             result -= parseFloat(numbers[i+1])
         }
     }
+    
+    if (Number.isInteger(result)) {
+        input.innerText = result
+    }
+    else if (result.toString().split('.')[1].length > 12) {
+        input.innerText = result.toFixed(10)
+    }else {
+        input.innerText = result
+    }
 
-    input.innerText = result.toFixed(8)
 })
