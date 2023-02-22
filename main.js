@@ -5,10 +5,19 @@ const multiply = document.getElementById('multi').innerText
 document.getElementById('numbers').addEventListener('click', function(e) {
     let elem = e.target.innerText
     if (elem != '=' && !['row', 'numbers'].includes(e.target.id)) {
+        
         if ((!Number.isInteger(parseInt(elem)) && !Number.isInteger(parseInt(input.innerText[input.innerText.length-1]))) || (input.innerText.length > 12)) {
             //pass
         }else {
-            input.innerText += elem
+            if (elem == '.') {
+                if (input.innerText.replaceAll('+', '$').replaceAll('-', '$').replaceAll(divide, '$').replaceAll(multiply, '$').split('$').at(-1).includes('.')) {
+                    // pass
+                }else {
+                    input.innerText += elem
+                }
+            }else {
+                input.innerText += elem
+            }
         }
     }
 })
