@@ -7,7 +7,11 @@ for (let i = 0 ; i < numbers.length; i++) {
     numbers[i].addEventListener('click' , function() {
             if (!Number.isInteger(parseInt(numbers[i].innerText)) && !Number.isInteger(parseInt(input.innerText[input.innerText.length-1]))){
 
-            }else {
+            }else if (input.innerText.length > 12) {
+
+            }
+            else {
+                console.log(input.innerText.length)
                 input.innerText += numbers[i].innerText
             }
     })
@@ -54,5 +58,5 @@ document.getElementById('equal').addEventListener('click', function() {
         }
     }
 
-    input.innerText = result
+    input.innerText = result.toFixed(8)
 })
